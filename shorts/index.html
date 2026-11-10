@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'unsafe-inline'; img-src 'self' data: https://rbpgdgnaztweblkebujf.supabase.co; media-src 'self' https://rbpgdgnaztweblkebujf.supabase.co; connect-src https://rbpgdgnaztweblkebujf.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E1621'/%3E%3Cpath d='M16 5l3.2 6.9 7.5.8-5.6 5.1 1.6 7.4L16 21.4l-6.6 3.8 1.6-7.4-5.6-5.1 7.5-.8z' fill='%23FFC53D'/%3E%3C/svg%3E">
+<title>Content OS Shorts</title>
+<style>
+/* Content OS Shorts review. Tokens: frost and night-ice with one warm colour, the gold of the ⭐ pick.
+   The posters carry the colour; the chrome stays quiet. */
+:root{
+  --bg:#EEF3F8; --surface:#FFFFFF; --surface-2:#E2EAF2; --line:#C7D3DF;
+  --fg:#0F1A26; --fg-2:#3B4C5F; --fg-3:#526476;
+  --ice:#0A6491; --ice-fg:#FFFFFF; --ice-soft:#D7EBF6;
+  --star:#FFC53D; --star-fg:#2A1E00; --star-line:#B07F00;
+  --ok:#0F6B41; --warn:#8A5800; --bad:#B3261E;
+  --chip-bg:rgba(9,14,21,.86); --chip-fg:#FFFFFF;
+  --dot-waiting:#F2A93B; --dot-draft:#A7B6C6; --dot-approved:#6FC3FF; --dot-posted:#4FD18B; --dot-dropped:#F07A7A;
+  --discord:#5865F2; --discord-hover:#4752C4;
+  --focus:#0A6491;
+  --f-display:"Bahnschrift","DIN Alternate","Avenir Next Condensed","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --gutter:16px;
+  --vp-wide:1280px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0E1621; --surface:#16212E; --surface-2:#1E2B3A; --line:#2C3D50;
+    --fg:#EAF2F8; --fg-2:#AFC0D1; --fg-3:#8A9DB1;
+    --ice:#8AD9FF; --ice-fg:#04263A; --ice-soft:#173246;
+    --star:#FFC53D; --star-fg:#2A1E00; --star-line:#FFC53D;
+    --ok:#5BD997; --warn:#FFB44D; --bad:#FF8A80;
+    --focus:#8AD9FF;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
+html.lock{overflow:hidden}
+body{margin:0; background:var(--bg); color:var(--fg); font:400 16px/1.5 var(--f-body); min-height:100dvh}
+button,input,textarea,select{font:inherit; color:inherit}
+a{color:var(--ice)}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+[hidden]{display:none !important}
+.vh{position:absolute !important; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0}
+h1,h2,h3{margin:0; font-family:var(--f-display); font-weight:700; letter-spacing:-.01em; text-wrap:balance}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 18px;
+  border-radius:10px; border:1px solid transparent; font-weight:650; cursor:pointer; text-decoration:none}
+.btn-primary{background:var(--ice); color:var(--ice-fg)}
+.btn-quiet{background:transparent; color:var(--fg); border-color:var(--line)}
+.btn-discord{background:var(--discord); color:#fff; min-height:52px; padding:0 24px; font-size:17px}
+@media (hover:hover){
+  .btn-discord:hover{background:var(--discord-hover)}
+  .btn-quiet:hover{background:var(--surface-2)}
+}
+.icon-btn{display:inline-grid; place-items:center; width:44px; height:44px; border-radius:10px; border:1px solid var(--line);
+  background:transparent; color:var(--fg); cursor:pointer; padding:0}
+.icon-btn svg{width:20px; height:20px}
+@media (hover:hover){ .icon-btn:hover{background:var(--surface-2)} }
+.btn[aria-busy="true"], .icon-btn[aria-busy="true"]{cursor:progress}
+@media (prefers-reduced-motion: no-preference){
+  .icon-btn[aria-busy="true"] svg{animation:spin .8s linear infinite}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- gate views (sign in, not on the list) ---------- */
+.gate{min-height:100dvh; display:grid; place-items:center; padding:32px var(--gutter)}
+.gate-box{width:100%; max-width:420px}
+.gate h1{font-size:clamp(34px,10vw,46px); line-height:1.02; font-stretch:87.5%}
+.gate p{color:var(--fg-2); margin:14px 0 0; max-width:36ch}
+.gate .btn{margin-top:28px}
+.gate .fine{font-size:14px; color:var(--fg-3); margin-top:12px}
+.gate-mark{display:block; width:44px; height:44px; margin-bottom:22px}
+
+/* ---------- list view ---------- */
+.top{padding:20px var(--gutter) 6px; max-width:var(--vp-wide); margin-inline:auto; display:flex; align-items:flex-start; gap:12px}
+.top-text{flex:1; min-width:0}
+.top h1{font-size:clamp(30px,8.6vw,40px); line-height:1.05; font-stretch:87.5%}
+.top .sub{margin:4px 0 0; color:var(--fg-3); font-size:14px; font-variant-numeric:tabular-nums}
+.top-actions{display:flex; gap:8px; align-items:center; flex:none}
+.top select{min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--surface); padding:0 10px; max-width:40vw}
+
+.filters{position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line)}
+.filters-in{max-width:var(--vp-wide); margin-inline:auto; display:flex; gap:8px; overflow-x:auto; padding:10px var(--gutter);
+  scrollbar-width:none; overscroll-behavior-x:contain}
+.filters-in::-webkit-scrollbar{display:none}
+.fchip{flex:none; display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 14px; border-radius:22px;
+  border:1px solid var(--line); background:var(--surface); color:var(--fg); font-weight:600; font-size:15px; cursor:pointer; white-space:nowrap}
+.fchip .n{font-weight:500; color:var(--fg-3); font-variant-numeric:tabular-nums}
+.fchip[aria-pressed="true"]{background:var(--fg); color:var(--bg); border-color:var(--fg)}
+.fchip[aria-pressed="true"] .n{color:inherit; opacity:.8}
+
+.page{max-width:var(--vp-wide); margin-inline:auto; padding:12px var(--gutter) 64px}
+.msg{margin:12px 0 0; padding:12px 14px; border-radius:10px; background:var(--surface); border:1px solid var(--line); color:var(--fg)}
+.msg.err{border-color:var(--bad); color:var(--bad)}
+.group{margin-top:18px}
+.group h2{font-size:19px; line-height:1.2; display:flex; align-items:baseline; gap:8px; margin:0 0 12px}
+.group h2 .n{font-family:var(--f-body); font-size:14px; font-weight:500; color:var(--fg-3)}
+.grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 12px; list-style:none; margin:0; padding:0}
+@media (min-width:768px){ .grid{grid-template-columns:repeat(auto-fill,minmax(184px,1fr)); gap:24px 16px} }
+.foot{margin-top:48px; padding-top:16px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; color:var(--fg-3); font-size:14px}
+.foot p{margin:0}
+.empty{padding:40px 4px; color:var(--fg-2); max-width:40ch}
+.empty strong{display:block; color:var(--fg); font-size:17px; margin-bottom:4px}
+
+/* a card: the poster does the talking */
+.card{display:flex; flex-direction:column; gap:8px; color:inherit; text-decoration:none; border-radius:12px; min-width:0}
+.card:focus-visible{outline-offset:4px}
+.poster{position:relative; display:block; aspect-ratio:9/16; border-radius:12px; overflow:hidden; background:var(--surface-2)}
+.poster img{display:block; width:100%; height:100%; object-fit:cover}
+.poster .ph{position:absolute; inset:0; display:grid; place-items:center; padding:12px; text-align:center; font-size:13px; color:var(--fg-3)}
+.card.picked .poster{box-shadow:0 0 0 3px var(--star)}
+.card[data-status="dropped"] .poster img{filter:grayscale(1) brightness(.72)}
+@media (hover:hover){ .card:hover .poster{box-shadow:0 0 0 2px var(--fg-3)} .card.picked:hover .poster{box-shadow:0 0 0 3px var(--star)} }
+.chip{display:inline-flex; align-items:center; gap:6px; padding:5px 8px; border-radius:6px; background:var(--chip-bg); color:var(--chip-fg);
+  font-size:12.5px; font-weight:650; line-height:1.15; white-space:nowrap; max-width:calc(100% - 16px); overflow:hidden; text-overflow:ellipsis}
+.chip::before{content:""; flex:none; width:8px; height:8px; border-radius:50%; background:var(--dot)}
+.st-waiting{--dot:var(--dot-waiting)} .st-draft{--dot:var(--dot-draft)} .st-approved{--dot:var(--dot-approved)}
+.st-posted{--dot:var(--dot-posted)} .st-dropped{--dot:var(--dot-dropped)}
+.poster .chip{position:absolute; left:8px; top:8px}
+.star{position:absolute; left:8px; bottom:6px; width:32px; height:32px; border-radius:50%; display:grid; place-items:center;
+  background:var(--star); color:var(--star-fg); font-size:17px; line-height:1}
+.dur{position:absolute; right:8px; bottom:8px; padding:3px 6px; border-radius:5px; background:var(--chip-bg); color:var(--chip-fg);
+  font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums}
+.c-title{font-weight:650; font-size:15px; line-height:1.3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere}
+.c-meta{font-size:13px; line-height:1.35; color:var(--fg-2); font-variant-numeric:tabular-nums; margin-top:-4px}
+.c-notes{font-size:13px; color:var(--fg-3); display:flex; align-items:center; gap:5px; margin-top:-6px}
+.c-notes svg{width:14px; height:14px}
+
+/* skeleton */
+.sk{aspect-ratio:9/16; border-radius:12px; background:var(--surface-2)}
+.sk-line{height:12px; border-radius:6px; background:var(--surface-2); margin-top:10px; width:80%}
+@media (prefers-reduced-motion: no-preference){ .sk,.sk-line{animation:pulse 1.4s ease-in-out infinite} }
+@keyframes pulse{50%{opacity:.55}}
+
+/* ---------- the detail sheet ---------- */
+dialog.sheet{padding:0; border:0; margin:0; width:100%; height:100%; max-width:none; max-height:none; background:var(--surface); color:var(--fg); overflow:auto}
+dialog.sheet::backdrop{background:rgba(4,8,13,.74)}
+.sh{display:grid; grid-template-areas:"bar" "media" "body"; grid-template-columns:minmax(0,1fr); min-height:100%}
+.sh-bar{grid-area:bar; position:sticky; top:0; z-index:2; display:flex; align-items:center; gap:10px; padding:8px 8px 8px var(--gutter); background:var(--surface); border-bottom:1px solid var(--line)}
+.sh-bar .chip{max-width:none; font-size:13px}
+.sh-len{font-size:14px; color:var(--fg-3); font-variant-numeric:tabular-nums}
+.sh-bar .icon-btn{margin-left:auto}
+.sh-media{grid-area:media; background:#000; display:grid; place-items:center}
+.sh-media video{display:block; width:100%; aspect-ratio:9/16; max-height:62dvh; background:#000; object-fit:contain}
+.sh-novideo{color:#C9D6E2; padding:48px 24px; text-align:center; max-width:34ch}
+.sh-body{grid-area:body; padding:18px var(--gutter) 40px; min-width:0}
+.sh-body h2{font-size:26px; line-height:1.1; font-stretch:87.5%; overflow-wrap:anywhere}
+.sh-body h2:focus{outline:none}
+.sh-detail{margin:6px 0 0; color:var(--fg-2)}
+.sh-sec{margin-top:24px}
+.sh-sec h3{font-size:17px; margin:0 0 8px}
+.plain{list-style:none; margin:0; padding:0}
+.plat li{display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline; padding:8px 0; border-top:1px solid var(--line)}
+.plat li:first-child{border-top:0; padding-top:0}
+.plat .pn{font-weight:650; min-width:84px}
+.plat .ps{color:var(--fg-2)}
+.plat a{font-weight:600; display:inline-flex; align-items:center; min-height:44px; margin-block:-10px}
+.mom li{padding:6px 0}
+.mom .what{display:block; color:var(--fg-2); font-size:15px}
+.mom .vt{display:block; color:var(--fg-3); font-size:14px; overflow-wrap:anywhere}
+.story{margin:0; color:var(--fg-2); white-space:pre-line}
+
+.pick{margin-top:20px; width:100%; min-height:56px; display:flex; align-items:center; gap:12px; padding:0 16px; border-radius:12px;
+  border:2px solid var(--star-line); background:transparent; color:var(--fg); font-size:17px; font-weight:700; cursor:pointer; text-align:left}
+.pick .lbl{flex:1}
+.pick .sw{flex:none; width:44px; height:26px; border-radius:13px; background:var(--surface-2); border:1px solid var(--line); position:relative}
+.pick .sw::after{content:""; position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:var(--fg-3)}
+.pick[aria-pressed="true"]{background:var(--star); color:var(--star-fg); border-color:var(--star)}
+.pick[aria-pressed="true"] .sw{background:var(--star-fg); border-color:var(--star-fg)}
+.pick[aria-pressed="true"] .sw::after{left:20px; background:var(--star)}
+@media (prefers-reduced-motion: no-preference){ .pick .sw::after{transition:left .15s ease-out} }
+.help{margin:8px 0 0; font-size:14px; color:var(--fg-3)}
+.err{color:var(--bad); font-size:14px; margin:8px 0 0}
+.okline{color:var(--ok); font-size:14px; margin:8px 0 0}
+
+.note-form label{display:block; font-family:var(--f-display); font-weight:700; font-size:17px; margin-bottom:8px}
+.note-form textarea{display:block; width:100%; min-height:104px; resize:vertical; padding:12px; border-radius:10px; border:1px solid var(--line);
+  background:var(--bg); font-size:16px; line-height:1.45}
+.note-form textarea[aria-invalid="true"]{border-color:var(--bad)}
+.note-row{display:flex; align-items:center; gap:12px; margin-top:10px}
+.count{flex:1; font-size:14px; color:var(--fg-3); font-variant-numeric:tabular-nums}
+.count.over{color:var(--warn); font-weight:600}
+.notes li{padding:12px 0; border-top:1px solid var(--line)}
+.notes li:first-child{border-top:0}
+.n-head{display:flex; flex-wrap:wrap; gap:4px 12px; font-size:14px; color:var(--fg-3)}
+.n-head .who{color:var(--fg); font-weight:650}
+.n-head .logged{color:var(--ok); font-weight:600}
+.n-text{margin:4px 0 0; white-space:pre-wrap; overflow-wrap:anywhere}
+
+@media (min-width:768px){
+  dialog.sheet{--h:min(880px, calc(100dvh - 48px)); width:min(1080px, calc(100vw - 48px)); height:var(--h); margin:auto; border-radius:16px; overflow:hidden}
+  .sh{height:100%; grid-template-areas:"media bar" "media body"; grid-template-columns:calc(var(--h) * 9 / 16) minmax(0,1fr); grid-template-rows:auto minmax(0,1fr)}
+  .sh-media{height:var(--h)}
+  .sh-media video{width:100%; height:100%; max-height:none; aspect-ratio:auto}
+  .sh-body{overflow:auto; padding:20px 28px 40px}
+  .sh-bar{position:static; padding-left:28px}
+}
+@media (prefers-reduced-motion: no-preference){
+  dialog.sheet[open]{animation:rise .2s ease-out}
+  @media (min-width:768px){ dialog.sheet[open]{animation:pop .16s ease-out} }
+}
+@keyframes rise{from{transform:translateY(28px); opacity:0}}
+@keyframes pop{from{transform:scale(.98); opacity:0}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 32 32"><path d="M16 4l3.4 7.3 8 .9-6 5.4 1.7 7.9L16 21.5l-7.1 4 1.7-7.9-6-5.4 8-.9z" fill="currentColor"/></symbol>
+</svg>
+
+<!-- Sign in -->
+<section id="view-signin" class="gate" hidden>
+  <div class="gate-box">
+    <svg class="gate-mark" viewBox="0 0 32 32" aria-hidden="true" style="color:var(--star)"><use href="#i-star"/></svg>
+    <h1>Content OS Shorts</h1>
+    <p>For Content OS streamers and their team.</p>
+    <button type="button" id="signin" class="btn btn-discord">Log in with Discord</button>
+    <p class="fine">Discord shares your user name, ID and email with the Content OS login. Only your Discord ID is used, to check the list.</p>
+    <p id="signin-err" class="err" role="alert" hidden></p>
+  </div>
+</section>
+
+<!-- Not on the list -->
+<section id="view-denied" class="gate" hidden>
+  <div class="gate-box">
+    <h1>Not on the list</h1>
+    <p>This Discord account isn't on the list. Ask William.</p>
+    <button type="button" id="denied-out" class="btn btn-quiet">Log out</button>
+  </div>
+</section>
+
+<!-- The list -->
+<div id="view-list" hidden>
+  <header class="top">
+    <div class="top-text">
+      <h1 id="who-title">Shorts</h1>
+      <p class="sub" id="sub" aria-live="polite"></p>
+    </div>
+    <div class="top-actions">
+      <label class="vh" for="streamer-pick">Streamer</label>
+      <select id="streamer-pick" hidden></select>
+      <button type="button" class="icon-btn" id="refresh" aria-label="Refresh" title="Refresh"><svg aria-hidden="true"><use href="#i-refresh"/></svg></button>
+    </div>
+  </header>
+  <nav class="filters" aria-label="Filter Shorts"><div class="filters-in" id="filters"></div></nav>
+  <main class="page" id="main">
+    <p id="list-err" class="msg err" role="alert" hidden></p>
+    <div id="list"></div>
+    <div class="foot">
+      <p>Logged in with Discord.</p>
+      <button type="button" class="btn btn-quiet" id="signout">Log out</button>
+    </div>
+  </main>
+</div>
+
+<!-- One Short -->
+<dialog id="sheet" class="sheet" aria-labelledby="sh-title">
+  <div class="sh">
+    <div class="sh-bar">
+      <span id="sh-chip" class="chip"></span>
+      <span id="sh-len" class="sh-len"></span>
+      <button type="button" class="icon-btn" id="sh-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sh-media">
+      <video id="sh-video" playsinline controls preload="metadata"></video>
+      <p id="sh-novideo" class="sh-novideo" hidden></p>
+    </div>
+    <div class="sh-body">
+      <h2 id="sh-title" tabindex="-1"></h2>
+      <p id="sh-detail" class="sh-detail"></p>
+
+      <button type="button" id="sh-pick" class="pick" aria-pressed="false" aria-describedby="sh-pick-help">
+        <span class="lbl">⭐ Upload next</span><span class="sw" aria-hidden="true"></span>
+      </button>
+      <p id="sh-pick-help" class="help"></p>
+      <p id="sh-pick-err" class="err" role="alert" hidden></p>
+
+      <form id="sh-form" class="note-form sh-sec" novalidate>
+        <label for="sh-note">What should change?</label>
+        <textarea id="sh-note" rows="4" aria-describedby="sh-count sh-note-err"></textarea>
+        <div class="note-row">
+          <span id="sh-count" class="count">0 / 2000</span>
+          <button type="submit" id="sh-send" class="btn btn-primary">Send</button>
+        </div>
+        <p id="sh-note-err" class="err" role="alert" hidden></p>
+        <p id="sh-note-ok" class="okline" role="status" hidden></p>
+      </form>
+
+      <section class="sh-sec" id="sh-notes-sec" hidden>
+        <h3>Notes</h3>
+        <ol id="sh-notes" class="plain notes"></ol>
+      </section>
+
+      <section class="sh-sec" id="sh-plat-sec" hidden>
+        <h3>Platforms</h3>
+        <ul id="sh-plat" class="plain plat"></ul>
+      </section>
+
+      <section class="sh-sec" id="sh-mom-sec" hidden>
+        <h3>Where it comes from</h3>
+        <ul id="sh-mom" class="plain mom"></ul>
+      </section>
+
+      <section class="sh-sec" id="sh-story-sec" hidden>
+        <h3>Story</h3>
+        <p id="sh-story" class="story"></p>
+      </section>
+    </div>
+  </div>
+</dialog>
+
+<script>
+"use strict";
+/* ---------- config (public by design: RLS protects the data; the page holds no data and no secret) ---------- */
+const SUPABASE_URL = "https://rbpgdgnaztweblkebujf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_nqHORcYIZf_pOTGlhnHGkA_gs6JoExV";
+const PAGE_URL = "https://william-holst.github.io/content-os-site/shorts/";
+const SUPABASE_JS = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js";
+// SHA-256 of that exact file, from jsDelivr's file list (data.jsdelivr.com/v1/packages/npm/@supabase/supabase-js@2.45.4).
+const SUPABASE_JS_SRI = "sha256-hZaWX+kY5lZgChtWjToWj1wNPSKmAIhrtvRKZVXbAec=";
+const SIGN_SECONDS = 3600;          // signed URLs live an hour
+const RESIGN_AFTER_MS = 50 * 60 * 1000;
+const NOTE_MAX = 2000;
+// review_inputs is read newest first: PostgREST cuts every reply at max-rows (1000 on Supabase) and keeps the first
+// rows of the order, so oldest first would lose the newest picks and notes once a streamer has more than 1000.
+const INPUTS_QUERY = {ascending: false, limit: 1000};
+const PICK_TEXT = {upload_next: "⭐ Upload next", upload_next_off: "⭐ Upload next: off"};
+
+const params = new URLSearchParams(location.search);
+const LOCAL = location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1";
+const FAKE = LOCAL && params.get("fake") === "1";
+
+/* ---------- statuses ---------- */
+const STATUS = {
+  waiting:  {chip: "Waiting for ✅", group: "Waiting for William's ✅", filter: "Waiting for ✅", rank: 1},
+  draft:    {chip: "Draft",          group: "Drafts",                   filter: "Drafts",         rank: 2},
+  approved: {chip: "Approved",       group: "Approved",                 filter: "Approved",       rank: 3},
+  posted:   {chip: "Posted",         group: "Posted",                   filter: "Posted",         rank: 4},
+  dropped:  {chip: "Dropped",        group: "Dropped",                  filter: "Dropped",        rank: 5},
+};
+const FILTERS = [["all", "All"], ["pick", "⭐ Upload next"], ["waiting"], ["draft"], ["approved"], ["posted"], ["dropped"]];
+const PLATFORMS = {youtube: "YouTube", tiktok: "TikTok", instagram: "Instagram", x: "X", facebook: "Facebook"};
+
+/* ---------- small helpers (row text only ever goes in through textContent / text nodes) ---------- */
+function el(tag, attrs, kids) {
+  const n = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") n.className = v;
+    else if (k === "text") n.textContent = String(v);
+    else n.setAttribute(k, v === true ? "" : String(v));
+  }
+  if (kids != null) for (const c of [].concat(kids)) if (c != null && c !== false) n.append(c);
+  return n;
+}
+function icon(name) {
+  const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  s.setAttribute("aria-hidden", "true");
+  const u = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  u.setAttribute("href", "#i-" + name);
+  s.append(u);
+  return s;
+}
+const $ = (id) => document.getElementById(id);
+const pad = (n) => String(n).padStart(2, "0");
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function dayMonth(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ""));
+  return m ? `${+m[3]} ${MONTHS[+m[2] - 1]}` : "";
+}
+function clock(sec) {
+  const s = Math.max(0, Math.floor(Number(sec) || 0));
+  return `${Math.floor(s / 3600)}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}`;
+}
+function duration(sec) {
+  const s = Math.round(Number(sec) || 0);
+  return `${Math.floor(s / 60)}:${pad(s % 60)}`;
+}
+const whenFmt = new Intl.DateTimeFormat("en-GB", {day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"});
+const timeFmt = new Intl.DateTimeFormat("en-GB", {hour: "2-digit", minute: "2-digit"});
+const numFmt = new Intl.NumberFormat("en-GB");
+function when(iso) { const d = new Date(iso); return isNaN(d) ? "" : whenFmt.format(d); }
+function isHttps(u) { return typeof u === "string" && /^https:\/\/[^\s]+$/i.test(u); }
+function chars(s) { return [...String(s)].length; }    // code points, like Postgres char_length
+function doc(s) { return (s && s.doc && typeof s.doc === "object") ? s.doc : {}; }
+function sortTime(s) { const t = Date.parse(s.sort_at || doc(s).made_at || ""); return isNaN(t) ? 0 : t; }
+function loadScript(src, integrity) {
+  return new Promise((ok, fail) => {
+    const s = document.createElement("script");
+    s.integrity = integrity; s.crossOrigin = "anonymous"; s.referrerPolicy = "no-referrer";
+    s.src = src;
+    s.onload = ok; s.onerror = () => fail(new Error("script"));
+    document.head.append(s);
+  });
+}
+
+/* ---------- the data layer: one object, real or fake ---------- */
+function realBackend() {
+  let sb = null;
+  async function client() {
+    if (sb) return sb;
+    if (!window.supabase) await loadScript(SUPABASE_JS, SUPABASE_JS_SRI);
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: {flowType: "pkce", detectSessionInUrl: true, persistSession: true, autoRefreshToken: true},
+    });
+    sb.auth.onAuthStateChange((event) => { if (event === "SIGNED_OUT") window.dispatchEvent(new Event("review:signedout")); });
+    return sb;
+  }
+  const must = ({data, error}) => { if (error) throw error; return data; };
+  const api = {
+    streamer: null,
+    async session() {
+      const data = must(await (await client()).auth.getSession());
+      return data.session ? {user: {id: data.session.user.id}} : null;
+    },
+    async signIn() {
+      must(await (await client()).auth.signInWithOAuth({provider: "discord", options: {redirectTo: PAGE_URL, scopes: "identify"}}));
+    },
+    async signOut() { await (await client()).auth.signOut({scope: "local"}); },   // this device only, not every device
+    async claim() {
+      const rows = must(await (await client()).rpc("review_claim")) || [];
+      return [].concat(rows).map((r) => (r && typeof r === "object") ? (r.review_claim ?? Object.values(r)[0]) : r)
+        .filter((x) => typeof x === "string" && x);
+    },
+    async streamers() { return must(await (await client()).from("streamers").select("streamer_id,name")) || []; },
+    async listShorts() {
+      return must(await (await client()).from("review_shorts")
+        .select("streamer_id,short_key,status,title,sort_at,doc,updated_at")
+        .eq("streamer_id", api.streamer).order("sort_at", {ascending: false})) || [];
+    },
+    async signedUrls(paths) {
+      if (!paths.length) return {};
+      const rows = must(await (await client()).storage.from("review").createSignedUrls(paths, SIGN_SECONDS)) || [];
+      const out = {};
+      for (const r of rows) {
+        const u = r && (r.signedUrl || r.signedURL);
+        if (r && !r.error && typeof u === "string" && u.startsWith(SUPABASE_URL + "/storage/v1/")) out[r.path] = u;
+      }
+      return out;
+    },
+    async listInputs() {
+      return must(await (await client()).from("review_inputs")
+        .select("id,streamer_id,short_key,kind,text,user_id,created_at,logged_as,logged_at")
+        .eq("streamer_id", api.streamer).order("id", {ascending: INPUTS_QUERY.ascending}).limit(INPUTS_QUERY.limit)) || [];
+    },
+    async addInput(short_key, kind, text) {
+      return must(await (await client()).from("review_inputs")
+        .insert({streamer_id: api.streamer, short_key, kind, text})
+        .select("id,streamer_id,short_key,kind,text,user_id,created_at,logged_as,logged_at").single());
+    },
+  };
+  return api;
+}
+
+/* Fake backend: only on file:, localhost or 127.0.0.1 with ?fake=1. No network, no supabase-js.
+   Every row here is invented (streamer, VODs, titles, notes): this file is public, so it holds no real data.
+   ?who=stranger (claim returns nothing), ?who=out (signed out until "Log in"),
+   ?fail=list|input|input429 (that call fails; input429 the way the hourly limit fails). */
+function fakeBackend() {
+  const who = params.get("who") || "member";
+  const fail = params.get("fail") || "";
+  const hold = params.get("hold") === "1";                // ?hold=1: addInput waits for window.__fake.release()
+  const releases = [];
+  const PGRST_MAX_ROWS = 1000;
+  const ME = "u-viewer", OTHER = "u-other";
+  const calls = [];
+  let signedIn = who !== "out";
+  let nextId = 200000;
+  const copy = (x) => JSON.parse(JSON.stringify(x));
+  const D = (vod, cid) => `frost/${vod}_${cid}/`;
+  const row = (vod, cid, status, title, sort_at, d) => ({short_key: `${vod}/${cid}`, status, title, sort_at,
+    doc: Object.assign({vod, platforms: {}, made_at: sort_at, video: D(vod, cid) + "0f0f0f0f.mp4", poster: D(vod, cid) + "0f0f0f0f.jpg"}, d)});
+  const one = (vod, vod_date, start_s, end_s) => [{vod, vod_date, start_s, end_s}];
+  const shorts = [
+    row("1000000105", "c04_shield_up_the_whole_time", "waiting", "\"my shield was up the whole time\"", "2026-10-13T09:12:00Z",
+      {vod_title: "ranked grind, no tilt today", vod_date: "2026-10-12", moments: one("1000000105", "2026-10-12", 16872.4, 16897.3), duration_s: 24.9,
+       version: "3", review_score: 8.0, story: "The shield was up the whole fight and the team still blames the tank.", status_detail: "Waiting for William's ✅"}),
+    row("1000000105", "c02_one_more_pull_i_promise", "waiting", "one more pull, i promise", "2026-10-13T08:40:00Z",
+      {vod_date: "2026-10-12", moments: one("1000000105", "2026-10-12", 11962, 11994.5), duration_s: 32.5, version: "2", review_score: 7.5,
+       story: "One more pull turns into four, and the last one works.", status_detail: "Waiting for William's ✅"}),
+    row("1000000104", "c07_payload_left_alone", "waiting", "who left the payload alone", "2026-10-12T21:03:00Z",
+      {vod_date: "2026-10-11", moments: one("1000000104", "2026-10-11", 7322, 7351), duration_s: 29.0, version: "2", review_score: 7.0,
+       story: "Everyone leaves the payload at the same time.", status_detail: "Waiting for William's ✅"}),
+    row("1000000103", "c05_bubble_on_the_wrong_guy", "waiting", "bubble on the wrong guy <b>again</b>", "2026-10-11T17:22:00Z",
+      {vod_date: "2026-10-09", moments: one("1000000103", "2026-10-09", 25110, 25131.2), duration_s: 21.2, version: "1", review_score: 7.0,
+       story: "<script>alert(1)<\/script> The bubble goes on the wrong player, twice.", status_detail: "Waiting for William's ✅",
+       platforms: {tiktok: {state: "live", url: "javascript:alert(1)", views: 3}}}),
+    row("1000000102", "c09_last_second_cap", "waiting", "last second cap, nobody on point", "2026-10-10T12:00:00Z",
+      {vod_date: "2026-10-07", moments: one("1000000102", "2026-10-07", 19804, 19840.6), duration_s: 36.6, version: "2", review_score: 6.5,
+       story: "The point flips with nobody standing on it.", status_detail: "Waiting for William's ✅"}),
+    row("1000000105", "combo_ledge_and_window", "draft", "ledge save into window save", "2026-10-13T02:00:00Z",
+      {vod_date: "2026-10-12", moments: [{vod: "1000000105", vod_date: "2026-10-12", start_s: 11962, end_s: 11975}, {vod: "1000000105", vod_date: "2026-10-12", start_s: 16872.4, end_s: 16890}],
+       duration_s: 31.0, version: "1", review_score: null, story: "", status_detail: "Draft: a render that never got a final check"}),
+    row("1000000103", "c03_tank_diff_said_chat", "draft", "tank diff, said chat", "2026-10-11T10:00:00Z",
+      {vod_date: "2026-10-09", moments: one("1000000103", "2026-10-09", null, null), duration_s: 28.8, version: "4", review_score: null, story: "",
+       status_detail: "Draft (v4), not finished"}),
+    row("1000000102", "c06_trash_talk_then_overtime", "approved", "never trash talk before overtime", "2026-10-12T15:00:00Z",
+      {vod_date: "2026-10-07", moments: one("1000000102", "2026-10-07", 14455, 14478.3), duration_s: 23.3, version: "2", review_score: 8.5,
+       story: "Trash talk in the last fight, then a very long overtime.", status_detail: "Approved. YouTube and Instagram post 19 Oct at 17:00; TikTok goes up by hand.",
+       platforms: {youtube: {state: "scheduled", at: "2026-10-19T15:00:00Z"}, instagram: {state: "scheduled", at: "2026-10-19T15:00:00Z"}, tiktok: {state: "by_hand"}}}),
+    row("1000000103", "c08_swap_now_or_we_lose", "approved", "\"swap now or we lose\"", "2026-10-11T09:00:00Z",
+      {vod_date: "2026-10-09", moments: one("1000000103", "2026-10-09", 9050, 9083), duration_s: 33.0, version: "3", review_score: 8.0,
+       story: "The swap call comes one second too late.", status_detail: "Approved, but it needs a new ✅: the cut changed after the ✅."}),
+    row("1000000104", "montage_three_pins", "posted", "three pins, one match", "2026-10-13T01:41:00Z",
+      {vod_title: "scrims then ranked", vod_date: "2026-10-11",
+       moments: [{vod: "1000000106", vod_date: "2026-10-14", start_s: 1767.0, end_s: 1793.0, what: "First pin lands mid-dash."},
+                 {vod: "1000000104", vod_date: "2026-10-11", start_s: 11940.56, end_s: 11946.6, what: "Second pin, same wall, chat loses it."},
+                 {vod: "1000000107", vod_date: null, start_s: 5021.2, end_s: 5033.0, what: "The third one: \"put that on the highlight reel\"."}],
+       duration_s: 33.7, version: "6", review_score: 8.0, story: "Three pins in one match, back to back.", status_detail: "Posted on YouTube and Instagram. TikTok still goes up by hand.",
+       platforms: {youtube: {state: "live", url: "https://www.youtube.com/shorts/aaaaaaaaaaa", at: "2026-10-13T13:00:00Z", views: 1234},
+                   instagram: {state: "live", url: "https://www.instagram.com/reel/AAAAAAAAAAA/", at: "2026-10-13T13:05:00Z", views: 5400},
+                   tiktok: {state: "by_hand"}}}),
+    row("1000000104", "w01_pin_off_the_ledge", "posted", "pinned him off the ledge", "2026-10-11T20:00:00Z",
+      {vod_date: "2026-10-11", moments: one("1000000104", "2026-10-11", 11940.56, 11946.6), duration_s: 18.4, version: "2", review_score: 7.5,
+       story: "A pin straight off the ledge.", status_detail: "Posted on YouTube, Instagram and TikTok.",
+       platforms: {youtube: {state: "live", url: "https://www.youtube.com/shorts/bbbbbbbbbbb", at: "2026-10-12T13:00:00Z", views: 812},
+                   tiktok: {state: "live", url: "https://www.tiktok.com/@example/video/1", at: "2026-10-12T13:10:00Z", views: 2210},
+                   instagram: {state: "live", url: "https://www.instagram.com/reel/BBBBBBBBBBB/", at: "2026-10-12T13:05:00Z", views: 960}}}),
+    row("1000000101", "c3_boop_from_nowhere", "posted", "where did that boop come from?", "2026-09-20T10:00:00Z",
+      {vod_date: "2026-10-05", moments: one("1000000101", "2026-10-05", 2211, 2240), duration_s: 29.0, version: "2", review_score: 8.0,
+       story: "A boop from off screen.", status_detail: "Posted on YouTube, TikTok and Instagram.",
+       platforms: {youtube: {state: "live", url: "https://www.youtube.com/shorts/ccccccccccc", at: "2026-09-21T13:00:00Z", views: 4410}},
+       video: null, poster: null}),
+    row("1000000104", "c11_zero_ult_fight", "dropped", "we lost the fight with zero ults", "2026-10-12T08:00:00Z",
+      {vod_date: "2026-10-11", moments: one("1000000104", "2026-10-11", 15002, 15030), duration_s: 28.0, version: "1", review_score: 5.0, story: "",
+       status_detail: "Dropped."}),
+    row("1000000101", "p02_jumped_off_the_map", "dropped", "jumped off the map to say hi", "2026-10-10T08:00:00Z",
+      {vod_date: "2026-10-05", moments: one("1000000101", "2026-10-05", 6050, 6079), duration_s: 29.0, version: "1", review_score: 5.5, story: "",
+       status_detail: "Dropped."}),
+  ].map((r) => Object.assign({streamer_id: "frost", updated_at: "2026-10-14T08:00:00Z"}, r));
+  const K = (n) => shorts[n].short_key;
+  const inputs = [
+    {id: 100101, short_key: K(0), kind: "note", text: "make the caption bigger at the start", user_id: ME, created_at: "2026-10-13T19:02:00Z", logged_as: "in-9001", logged_at: "2026-10-13T19:15:00Z"},
+    {id: 100102, short_key: K(0), kind: "upload_next", text: PICK_TEXT.upload_next, user_id: ME, created_at: "2026-10-13T19:03:00Z", logged_as: "in-9002", logged_at: "2026-10-13T19:15:00Z"},
+    {id: 100103, short_key: K(1), kind: "upload_next", text: PICK_TEXT.upload_next, user_id: ME, created_at: "2026-10-13T19:04:00Z", logged_as: "in-9003", logged_at: "2026-10-13T19:15:00Z"},
+    {id: 100104, short_key: K(1), kind: "upload_next_off", text: PICK_TEXT.upload_next_off, user_id: ME, created_at: "2026-10-13T19:20:00Z", logged_as: null, logged_at: null},
+    {id: 100105, short_key: K(4), kind: "note", text: "cut the first 2 seconds", user_id: OTHER, created_at: "2026-10-13T20:10:00Z", logged_as: "in-9004", logged_at: "2026-10-13T20:15:00Z"},
+    {id: 100106, short_key: K(0), kind: "note", text: "keep the crowd noise at the end <b>loud</b>", user_id: ME, created_at: "2026-10-14T07:41:00Z", logged_as: null, logged_at: null},
+    {id: 100107, short_key: K(9), kind: "upload_next", text: PICK_TEXT.upload_next, user_id: ME, created_at: "2026-10-12T19:00:00Z", logged_as: "in-9005", logged_at: "2026-10-12T19:15:00Z"},
+    {id: 100108, short_key: K(12), kind: "upload_next", text: PICK_TEXT.upload_next, user_id: ME, created_at: "2026-10-14T07:50:00Z", logged_as: null, logged_at: null},
+  ].map((r) => Object.assign({streamer_id: "frost"}, r));
+  const many = Math.min(Number(params.get("many")) || 0, 5000);
+  for (let i = 1; i <= many; i++) inputs.push({id: i, streamer_id: "frost", short_key: K(0), kind: "upload_next_off",
+    text: PICK_TEXT.upload_next_off, user_id: OTHER, created_at: "2026-10-01T00:00:00Z", logged_as: `in-${i}`, logged_at: "2026-10-01T00:05:00Z"});
+  const signed = {};
+  function mediaUrl(path) {
+    const n = [...path].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7) % 3 + 1;
+    return path.endsWith(".mp4") ? `fake-media/clip-${n}.mp4` : `fake-media/poster-${n}.jpg`;
+  }
+  const api = {
+    streamer: null,
+    async session() { calls.push(["session"]); return signedIn ? {user: {id: ME}} : null; },
+    async signIn() { calls.push(["signIn"]); signedIn = true; },
+    async signOut() { calls.push(["signOut"]); signedIn = false; },
+    async claim() { calls.push(["claim"]); return who === "stranger" ? [] : ["frost"]; },
+    async streamers() { calls.push(["streamers"]); return [{streamer_id: "frost", name: "Frost"}]; },
+    async listShorts() { calls.push(["listShorts"]); if (fail === "list") throw new Error("fake listShorts failure"); return copy(shorts); },
+    async signedUrls(paths) {
+      calls.push(["signedUrls", paths.slice()]);
+      const out = {};
+      for (const p of paths) {
+        signed[p] = (signed[p] || 0) + 1;
+        // The payload video's first URL is "expired": the page must re-sign it once and play.
+        out[p] = (p.includes("c07_payload_left_alone") && p.endsWith(".mp4") && signed[p] === 1) ? "fake-media/expired.mp4" : mediaUrl(p);
+      }
+      return out;
+    },
+    async listInputs() {                                  // like PostgREST: the page's order, then the cut
+      calls.push(["listInputs"]);
+      const rows = inputs.slice().sort((a, b) => (INPUTS_QUERY.ascending ? a.id - b.id : b.id - a.id));
+      return copy(rows.slice(0, Math.min(INPUTS_QUERY.limit, PGRST_MAX_ROWS)));
+    },
+    async addInput(short_key, kind, text) {
+      calls.push(["addInput", short_key, kind, text]);
+      if (hold) await new Promise((r) => releases.push(r));
+      if (fail === "input") throw new Error("fake addInput failure");
+      if (fail === "input429") throw {code: "PT429", message: "rate limit: at most 60 per hour"};
+      if (fail === "input42501") throw {code: "42501", message: "new row violates row-level security policy"};
+      const row = {id: nextId++, streamer_id: api.streamer, short_key, kind, text, user_id: ME, created_at: new Date().toISOString(), logged_as: null, logged_at: null};
+      inputs.push(row);
+      return copy(row);
+    },
+  };
+  window.__fake = {calls, inputs, release: () => releases.splice(0).forEach((r) => r())};
+  return api;
+}
+
+const backend = FAKE ? fakeBackend() : realBackend();
+
+/* ---------- state ---------- */
+const S = {
+  me: null, streamers: [], names: {}, current: null,
+  shorts: [], inputs: [], filter: "all", loadedAt: 0, loading: false,
+  urls: new Map(),          // storage path -> {url, at}
+  drafts: new Map(),        // short_key -> unsent note text (memory only, never storage)
+  sendingNotes: new Set(), sendingPicks: new Set(),   // short_keys with a note / a pick in flight
+  open: null, pushed: false, resigned: false, lastCard: null, booted: false,
+};
+
+function showView(name) {
+  for (const v of ["signin", "denied", "list"]) $("view-" + v).hidden = v !== name;
+}
+
+/* ---------- boot ---------- */
+async function boot() {
+  const hadCode = params.has("code");
+  const oauthError = params.get("error_description") || params.get("error");
+  let session;
+  try { session = await backend.session(); }       // supabase-js reads ?code (PKCE) while it starts up
+  catch (e) { session = null; if (!hadCode && !oauthError) return showSignIn("Couldn't reach the login service. Check your connection and reload the page."); }
+  if (!FAKE && (hadCode || oauthError)) {             // then the one-time code leaves the address bar
+    const u = new URL(location.href);
+    for (const k of ["code", "error", "error_description", "error_code", "state"]) u.searchParams.delete(k);
+    history.replaceState(history.state, "", u.pathname + u.search + u.hash);
+  }
+  if (!session) return showSignIn((hadCode || oauthError) ? "Discord login didn't finish. Try again." : "");
+  S.me = session.user.id;
+
+  let ids;
+  try { ids = await backend.claim(); }
+  catch (e) {
+    showView("list");
+    return listError("Couldn't check your access. Check your connection, then tap Refresh.");
+  }
+  if (!ids.length) { showView("denied"); $("denied-out").focus(); return; }
+  S.streamers = ids;
+  try { for (const r of await backend.streamers()) if (r && r.streamer_id) S.names[r.streamer_id] = r.name || r.streamer_id; }
+  catch (e) { /* names are nice to have; ids work too */ }
+  setStreamer(ids[0]);
+  const pickEl = $("streamer-pick");
+  pickEl.replaceChildren(...ids.map((id) => el("option", {value: id, text: S.names[id] || id})));
+  pickEl.hidden = ids.length < 2;
+  showView("list");
+  S.booted = true;
+  await load({first: true});
+}
+
+function setStreamer(id) {
+  S.current = id;
+  backend.streamer = id;
+  const name = S.names[id] || id;
+  $("who-title").textContent = `${name}'s Shorts`;
+  document.title = `${name}'s Shorts`;
+}
+
+function showSignIn(message) {
+  showView("signin");
+  const err = $("signin-err");
+  err.textContent = message || "";
+  err.hidden = !message;
+}
+
+function listError(message) {
+  const e = $("list-err");
+  e.textContent = message || "";
+  e.hidden = !message;
+}
+
+/* ---------- loading data ---------- */
+let skeletonTimer = 0;
+async function load({first = false} = {}) {
+  if (S.loading) return;
+  S.loading = true;
+  const btn = $("refresh");
+  btn.setAttribute("aria-busy", "true");
+  if (first) skeletonTimer = setTimeout(renderSkeleton, 100);
+  try {
+    const [shorts, inputs] = await Promise.all([backend.listShorts(), backend.listInputs()]);
+    S.shorts = (shorts || []).filter((r) => r && r.streamer_id === S.current && hasOwn(STATUS, r.status));
+    S.inputs = (inputs || []).filter((r) => r && r.streamer_id === S.current);
+    S.loadedAt = Date.now();
+    listError("");
+    render();
+    if (S.open) refreshSheet();
+    else if (first) openFromHash(false);
+    signPosters();
+  } catch (e) {
+    if (first) $("list").replaceChildren();
+    listError("Couldn't load your Shorts. Check your connection, then tap Refresh.");
+  } finally {
+    clearTimeout(skeletonTimer);
+    S.loading = false;
+    btn.removeAttribute("aria-busy");
+  }
+}
+
+function renderSkeleton() {
+  const ul = el("ul", {class: "grid", "aria-hidden": "true"});
+  for (let i = 0; i < 6; i++) ul.append(el("li", null, [el("div", {class: "sk"}), el("div", {class: "sk-line"})]));
+  $("list").replaceChildren(el("div", {class: "group"}, ul));
+}
+
+async function sign(paths, {fresh = false} = {}) {
+  const now = Date.now();
+  const need = [...new Set(paths.filter((p) => typeof p === "string" && p && (fresh || !S.urls.has(p) || now - S.urls.get(p).at > RESIGN_AFTER_MS)))];
+  for (let i = 0; i < need.length; i += 100) {
+    const got = await backend.signedUrls(need.slice(i, i + 100));
+    for (const [p, u] of Object.entries(got || {})) if (typeof u === "string") S.urls.set(p, {url: u, at: now});
+  }
+  return (p) => (S.urls.has(p) ? S.urls.get(p).url : null);
+}
+
+async function signPosters() {
+  try {
+    const get = await sign(S.shorts.map((s) => doc(s).poster));
+    for (const img of document.querySelectorAll("img[data-poster]")) {
+      const u = get(img.dataset.poster);
+      if (u && img.getAttribute("src") !== u) img.src = u;
+    }
+    if (S.open) { const s = findShort(S.open); const u = s && get(doc(s).poster); if (u) $("sh-video").poster = u; }
+  } catch (e) { /* cards keep their placeholder */ }
+}
+
+/* ---------- derived state ---------- */
+function byId(a, b) { return (Number(a.id) - Number(b.id)) || String(a.created_at).localeCompare(String(b.created_at)); }
+function pickedKeys() {                // newest pick row per Short; a posted Short is never a pick any more
+  const last = new Map();
+  for (const r of S.inputs.slice().sort(byId)) if (r.kind === "upload_next" || r.kind === "upload_next_off") last.set(r.short_key, r.kind);
+  const posted = new Set(S.shorts.filter((s) => s.status === "posted").map((s) => s.short_key));
+  return new Set([...last].filter(([key, k]) => k === "upload_next" && !posted.has(key)).map(([key]) => key));
+}
+function notesFor(key) { return S.inputs.filter((r) => r.kind === "note" && r.short_key === key).sort(byId); }
+function findShort(key) { return S.shorts.find((s) => s.short_key === key) || null; }
+function newestFirst(a, b) { return sortTime(b) - sortTime(a); }
+
+/* ---------- the list ---------- */
+function render() {
+  const picks = pickedKeys();
+  const counts = {all: S.shorts.length, pick: S.shorts.filter((s) => picks.has(s.short_key)).length};
+  for (const k of Object.keys(STATUS)) counts[k] = S.shorts.filter((s) => s.status === k).length;
+
+  const bar = $("filters");
+  bar.replaceChildren(...FILTERS.map(([key, label]) => {
+    const b = el("button", {type: "button", class: "fchip", "data-filter": key, "aria-pressed": String(S.filter === key)},
+      [el("span", {class: "l", text: label || STATUS[key].filter}), el("span", {class: "n", text: counts[key]})]);
+    b.addEventListener("click", () => { S.filter = key; render(); signPosters(); });
+    return b;
+  }));
+
+  const n = S.shorts.length;
+  $("sub").textContent = `${n} ${n === 1 ? "Short" : "Shorts"}, updated ${timeFmt.format(new Date(S.loadedAt || Date.now()))}`;
+
+  const groups = [];
+  if (S.filter === "all") {
+    const rest = S.shorts.filter((s) => !picks.has(s.short_key));
+    groups.push(["pick", "⭐ Upload next", S.shorts.filter((s) => picks.has(s.short_key)).sort(newestFirst)]);
+    for (const k of Object.keys(STATUS)) groups.push([k, STATUS[k].group, rest.filter((s) => s.status === k).sort(newestFirst)]);
+  } else if (S.filter === "pick") {
+    groups.push(["pick", null, S.shorts.filter((s) => picks.has(s.short_key)).sort(newestFirst)]);
+  } else {
+    groups.push([S.filter, null, S.shorts.filter((s) => s.status === S.filter).sort((a, b) =>
+      (picks.has(b.short_key) - picks.has(a.short_key)) || newestFirst(a, b))]);
+  }
+
+  const out = [];
+  for (const [key, heading, items] of groups) {
+    if (!items.length) continue;
+    const g = el("section", {class: "group", "data-group": key});
+    if (heading) g.append(el("h2", null, [heading, el("span", {class: "n", text: items.length})]));
+    g.append(el("ul", {class: "grid"}, items.map((s) => el("li", null, card(s, picks.has(s.short_key))))));
+    out.push(g);
+  }
+  if (!out.length) out.push(emptyState());
+  $("list").replaceChildren(...out);
+}
+
+const EMPTY = {
+  pick: ["Nothing marked yet.", "Open a Short and tap ⭐ Upload next on the one you want out first."],
+  all: ["No Shorts yet.", "New ones show up here within 15 minutes of their render."],
+  waiting: ["Nothing is waiting for William's ✅.", "Tap All to see every Short."],
+  draft: ["No drafts right now.", "Tap All to see every Short."],
+  approved: ["Nothing approved right now.", "Tap All to see every Short."],
+  posted: ["Nothing posted yet.", "Tap All to see every Short."],
+  dropped: ["Nothing dropped.", "Tap All to see every Short."],
+};
+function emptyState() {
+  const [head, line] = EMPTY[S.filter];
+  return el("div", {class: "empty"}, [el("strong", {text: head}), line]);
+}
+
+function streamDate(m, d) {                // a beat from another VOD may have no date; never borrow the host's
+  return dayMonth(m.vod_date || (m.vod === d.vod ? d.vod_date : ""));
+}
+function hasSpan(m) { return Number.isFinite(m.start_s) && Number.isFinite(m.end_s); }
+function firstMomentText(d) {
+  const m = Array.isArray(d.moments) && d.moments.length ? d.moments[0] : null;
+  if (!m) { const date = dayMonth(d.vod_date); return date ? `${date} stream` : ""; }
+  const date = streamDate(m, d);
+  const where = date ? `${date} stream` : "Another stream";
+  return Number.isFinite(m.start_s) ? `${where} · ${clock(m.start_s)}` : where;
+}
+
+function card(s, picked) {
+  const d = doc(s);
+  const meta = firstMomentText(d);
+  const notes = notesFor(s.short_key).length;
+  const poster = el("span", {class: "poster"});
+  if (d.poster) {
+    const cached = S.urls.get(d.poster);
+    const img = el("img", {alt: "", loading: "lazy", decoding: "async", "data-poster": d.poster, src: cached ? cached.url : null});
+    img.addEventListener("error", () => { img.replaceWith(el("span", {class: "ph", text: "No preview"})); });
+    poster.append(img);
+  } else {
+    poster.append(el("span", {class: "ph", text: d.video ? "No preview" : "Video no longer kept here"}));
+  }
+  poster.append(el("span", {class: "chip st-" + s.status, text: STATUS[s.status].chip}));
+  if (picked) poster.append(el("span", {class: "star"}, [el("span", {"aria-hidden": "true", text: "★"}), el("span", {class: "vh", text: "Marked ⭐ Upload next"})]));
+  if (d.duration_s) poster.append(el("span", {class: "dur"}, [el("span", {class: "vh", text: "Length "}), duration(d.duration_s)]));
+  const a = el("a", {class: "card" + (picked ? " picked" : ""), href: "#" + encodeURIComponent(s.short_key).replace(/%2F/g, "/"), "data-key": s.short_key, "data-status": s.status}, [
+    poster,
+    el("span", {class: "c-title", text: s.title || s.short_key}),
+    meta ? el("span", {class: "c-meta", text: meta}) : null,
+    notes ? el("span", {class: "c-notes"}, [icon("note"), `${notes} ${notes === 1 ? "note" : "notes"}`]) : null,
+  ]);
+  a.addEventListener("click", () => { S.lastCard = s.short_key; });
+  return a;
+}
+
+/* ---------- the sheet ---------- */
+const sheet = $("sheet");
+const video = $("sh-video");
+
+function keyFromHash() {
+  const h = location.hash.slice(1);
+  if (!h) return "";
+  try { return decodeURIComponent(h); } catch (e) { return ""; }
+}
+
+function openFromHash(pushed) {
+  const key = keyFromHash();
+  if (!key) { if (S.open) closeSheet(); return; }
+  if (S.open === key) return;
+  if (!findShort(key)) {
+    history.replaceState(history.state, "", location.pathname + location.search);
+    listError("That Short isn't on the list anymore. It may have been dropped or replaced.");
+    return;
+  }
+  openSheet(key, pushed);
+}
+
+function openSheet(key, pushed) {
+  S.open = key; S.pushed = pushed; S.resigned = false;
+  S.lastCard = key;
+  fillSheet(findShort(key), {fresh: true});
+  if (!sheet.open) sheet.showModal();
+  document.documentElement.classList.add("lock");
+  $("sh-title").focus({preventScroll: true});
+  sheet.scrollTop = 0;
+  startVideo(findShort(key));
+}
+
+function requestClose() {
+  if (!S.open) return;
+  if (S.pushed) {                                 // the card pushed #key: going back closes it and keeps Back honest
+    history.back();
+    setTimeout(() => { if (S.open && !sheet.open) closeSheet(); }, 400);
+    return;
+  }
+  history.replaceState(history.state, "", location.pathname + location.search);
+  closeSheet();
+}
+
+function closeSheet() {
+  const key = S.open;
+  S.open = null;
+  video.pause();
+  video.removeAttribute("src");
+  video.removeAttribute("poster");
+  video.load();
+  if (sheet.open) sheet.close();
+  document.documentElement.classList.remove("lock");
+  const back = document.querySelector(`.card[data-key="${CSS.escape(key || S.lastCard || "")}"]`);
+  if (back) back.focus({preventScroll: false});
+}
+
+async function startVideo(s) {
+  const d = doc(s);
+  const nov = $("sh-novideo");
+  video.hidden = !d.video; nov.hidden = !!d.video;
+  if (!d.video) {
+    const live = Object.values(d.platforms || {}).some((p) => p && p.state === "live" && isHttps(p.url));
+    nov.textContent = live ? "The video isn't kept here anymore. Watch it on the platform links below." : "There's no video for this Short yet.";
+    return;
+  }
+  try {
+    const get = await sign([d.video, d.poster].filter(Boolean));
+    if (S.open !== s.short_key) return;
+    if (d.poster && get(d.poster)) video.poster = get(d.poster);
+    const u = get(d.video);
+    if (u) video.src = u; else videoFailed();
+  } catch (e) { if (S.open === s.short_key) videoFailed(); }
+}
+
+function videoFailed() {
+  $("sh-novideo").textContent = "This video didn't load. Close it, tap Refresh and try again.";
+  $("sh-novideo").hidden = false;
+  video.hidden = true;
+}
+
+video.addEventListener("error", async () => {
+  const s = S.open && findShort(S.open);
+  if (!s || !video.getAttribute("src")) return;
+  if (S.resigned) return videoFailed();
+  S.resigned = true;                                   // a signed URL may have expired: sign once more
+  try {
+    const key = s.short_key;
+    const get = await sign([doc(s).video], {fresh: true});
+    if (S.open !== key) return;
+    const u = get(doc(s).video);
+    if (u) { const t = video.currentTime; video.src = u; if (t) video.currentTime = t; } else videoFailed();
+  } catch (e) { videoFailed(); }
+});
+
+function fillSheet(s, {fresh = false} = {}) {
+  const d = doc(s);
+  const chip = $("sh-chip");
+  chip.className = "chip st-" + s.status;
+  chip.textContent = STATUS[s.status].chip;
+  $("sh-len").textContent = d.duration_s ? duration(d.duration_s) : "";
+  $("sh-title").textContent = s.title || s.short_key;
+  $("sh-detail").textContent = d.status_detail || STATUS[s.status].group;
+
+  // platforms
+  const order = Object.keys(PLATFORMS);
+  const rank = (n) => (order.includes(n) ? order.indexOf(n) : order.length);
+  const plat = Object.entries(d.platforms || {}).filter(([, p]) => p && typeof p === "object").sort(([a], [b]) => rank(a) - rank(b));
+  $("sh-plat").replaceChildren(...plat.map(([name, p]) => platformRow(name, p)));
+  $("sh-plat-sec").hidden = !plat.length;
+
+  // moments
+  const moms = Array.isArray(d.moments) ? d.moments : [];
+  $("sh-mom").replaceChildren(...moms.map((m) => el("li", null, [
+    `From ${streamDate(m, d) ? `the ${streamDate(m, d)} stream` : "another stream"}${hasSpan(m) ? ` at ${clock(m.start_s)}-${clock(m.end_s)}` : ""}`,
+    m.what ? el("span", {class: "what", text: m.what}) : null,
+    (!m.what && d.vod_title && m.vod === d.vod) ? el("span", {class: "vt", text: d.vod_title}) : null,
+  ])));
+  $("sh-mom-sec").hidden = !moms.length;
+
+  $("sh-story").textContent = d.story || "";
+  $("sh-story-sec").hidden = !d.story;
+
+  renderPick();
+  renderNotes();
+  showNoteBusy(S.sendingNotes.has(s.short_key));     // only the Short that is sending is locked
+  showPickBusy(S.sendingPicks.has(s.short_key));
+  if (fresh) {
+    const t = $("sh-note");
+    t.value = S.drafts.get(s.short_key) || ""; t.removeAttribute("aria-invalid");
+    updateCount();
+    $("sh-note-err").hidden = true; $("sh-note-ok").hidden = true; $("sh-pick-err").hidden = true;
+  }
+}
+
+function refreshSheet() {
+  const s = findShort(S.open);
+  if (!s) return;
+  fillSheet(s);
+}
+
+function platformRow(name, p) {
+  const label = PLATFORMS[name] || name;
+  const kids = [el("span", {class: "pn", text: label})];
+  if (p.state === "live") {
+    if (isHttps(p.url)) kids.push(el("a", {href: p.url, target: "_blank", rel: "noopener noreferrer", text: `Watch on ${label}`}));
+    else kids.push(el("span", {class: "ps", text: "Live"}));
+    if (Number.isFinite(p.views)) kids.push(el("span", {class: "ps", text: `${numFmt.format(p.views)} ${p.views === 1 ? "view" : "views"}`}));
+  } else if (p.state === "scheduled") {
+    kids.push(el("span", {class: "ps", text: p.at ? `Scheduled for ${when(p.at)}` : "Scheduled"}));
+  } else if (p.state === "held") {
+    kids.push(el("span", {class: "ps", text: "Held back for now"}));
+  } else if (p.state === "by_hand") {
+    kids.push(el("span", {class: "ps", text: "Goes up by hand, not done yet"}));
+  } else if (p.state) {
+    kids.push(el("span", {class: "ps", text: String(p.state)}));
+  }
+  return el("li", null, kids);
+}
+
+function renderPick() {
+  const s = findShort(S.open);
+  const canPick = !!s && s.status !== "posted";     // posted is out already: nothing to pick
+  $("sh-pick").hidden = !canPick;
+  $("sh-pick-help").hidden = !canPick;
+  if (!canPick) { $("sh-pick-err").hidden = true; return; }
+  const on = pickedKeys().has(S.open);
+  const b = $("sh-pick");
+  b.setAttribute("aria-pressed", String(on));
+  $("sh-pick-help").textContent = on
+    ? "Marked. Tap again to unmark. William still gives the ✅ before anything posts."
+    : "Mark the one you want out first. William still gives the ✅ before anything posts.";
+}
+
+function renderNotes() {
+  const notes = notesFor(S.open);
+  $("sh-notes").replaceChildren(...notes.map((r) => el("li", null, [
+    el("div", {class: "n-head"}, [
+      el("span", {class: "who", text: r.user_id === S.me ? "You" : "Team"}),
+      el("span", {text: when(r.created_at)}),
+      r.logged_as ? el("span", {class: "logged", title: r.logged_as, text: "Logged ✓"}) : el("span", {text: "Not logged yet"}),
+    ]),
+    el("p", {class: "n-text", text: r.text}),
+  ])));
+  $("sh-notes-sec").hidden = !notes.length;
+}
+
+const SAVE_ERRORS = {
+  PT429: "That's a lot of changes for one hour. Wait a bit, then try again.",   // the 60-an-hour limit
+  "42501": "This Short changed or was removed. Tap Refresh.",                   // RLS refused: the Short or access is gone
+};
+// Object.hasOwn needs iOS 15.4+; this works on older iPhones too.
+function hasOwn(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
+function saveError(e, fallback) { return e && hasOwn(SAVE_ERRORS, e.code) ? SAVE_ERRORS[e.code] : fallback; }
+function showNoteBusy(on) {
+  const send = $("sh-send");
+  $("sh-note").readOnly = on;
+  if (on) send.setAttribute("aria-busy", "true"); else send.removeAttribute("aria-busy");
+  send.textContent = on ? "Sending…" : "Send";
+}
+function showPickBusy(on) { if (on) $("sh-pick").setAttribute("aria-busy", "true"); else $("sh-pick").removeAttribute("aria-busy"); }
+
+$("sh-pick").addEventListener("click", async () => {
+  const key = S.open;
+  if (!key || S.sendingPicks.has(key)) return;
+  const kind = pickedKeys().has(key) ? "upload_next_off" : "upload_next";
+  S.sendingPicks.add(key); showPickBusy(true);
+  $("sh-pick-err").hidden = true;
+  try {
+    const row = await backend.addInput(key, kind, PICK_TEXT[kind]);
+    if (row) S.inputs.push(row);
+    render(); signPosters();
+    if (S.open === key) renderPick();
+  } catch (e) {
+    if (S.open !== key) return;
+    $("sh-pick-err").textContent = saveError(e, "Couldn't save that. Check your connection and try again.");
+    $("sh-pick-err").hidden = false;
+  } finally { S.sendingPicks.delete(key); if (S.open === key) showPickBusy(false); }
+});
+
+function updateCount() {
+  const n = chars($("sh-note").value);
+  const c = $("sh-count");
+  c.textContent = `${numFmt.format(n)} / ${numFmt.format(NOTE_MAX)}`;
+  c.classList.toggle("over", n > NOTE_MAX);
+}
+$("sh-note").addEventListener("input", () => {
+  const v = $("sh-note").value;
+  if (S.open) { if (v) S.drafts.set(S.open, v); else S.drafts.delete(S.open); }
+  updateCount();
+  $("sh-note-ok").hidden = true;
+  if ($("sh-note").getAttribute("aria-invalid") === "true") { $("sh-note").removeAttribute("aria-invalid"); $("sh-note-err").hidden = true; }
+});
+
+$("sh-form").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const key = S.open;
+  const t = $("sh-note"), err = $("sh-note-err"), ok = $("sh-note-ok"), send = $("sh-send");
+  if (!key || S.sendingNotes.has(key)) return;
+  const text = t.value;                                  // sent verbatim: spaces and line breaks kept
+  const n = chars(text);
+  let problem = "";
+  if (!text.trim()) problem = "Write what should change first.";
+  else if (n > NOTE_MAX) problem = `That's ${numFmt.format(n)} characters. Keep it to ${numFmt.format(NOTE_MAX)}.`;
+  if (problem) { err.textContent = problem; err.hidden = false; t.setAttribute("aria-invalid", "true"); t.focus(); return; }
+  S.sendingNotes.add(key); showNoteBusy(true);
+  try {
+    const row = await backend.addInput(key, "note", text);
+    if (row) S.inputs.push(row);
+    S.drafts.delete(key);
+    render(); signPosters();
+    if (S.open === key) {
+      t.value = ""; updateCount();
+      ok.textContent = "Sent. Content OS logs it within 15 minutes.";
+      ok.hidden = false;
+      renderNotes();
+    }
+  } catch (e) {
+    if (S.open !== key) return;
+    err.textContent = saveError(e, "Couldn't send your note. Check your connection and try again.") + " Your text is still here.";
+    err.hidden = false;
+  } finally { S.sendingNotes.delete(key); if (S.open === key) showNoteBusy(false); }
+});
+
+// Esc, the close button and a backdrop click all close the dialog; its close event then sorts out the address bar.
+sheet.addEventListener("close", () => { if (S.open) requestClose(); });
+$("sh-close").addEventListener("click", () => sheet.close());
+sheet.addEventListener("click", (ev) => { if (ev.target === sheet) sheet.close(); });
+window.addEventListener("hashchange", () => { if (S.booted && S.shorts.length) openFromHash(true); });
+
+/* ---------- header and gates ---------- */
+$("refresh").addEventListener("click", () => (S.booted ? load() : boot()));
+$("streamer-pick").addEventListener("change", (ev) => {
+  setStreamer(ev.target.value);
+  S.shorts = []; S.inputs = []; S.filter = "all";
+  load({first: true});
+});
+function leave(message) {
+  S.booted = false; S.shorts = []; S.inputs = []; S.drafts.clear();
+  if (S.open) { history.replaceState(history.state, "", location.pathname + location.search); closeSheet(); }
+  showSignIn(message);
+}
+async function signOut() {
+  try { await backend.signOut(); } catch (e) { /* the session is gone either way */ }
+  leave("");
+  $("signin").focus();
+}
+$("signout").addEventListener("click", signOut);
+$("denied-out").addEventListener("click", signOut);
+window.addEventListener("review:signedout", () => { if (S.booted) leave("You were logged out. Log in again to see your Shorts."); });
+function resetSignIn() { const b = $("signin"); b.removeAttribute("aria-busy"); b.textContent = "Log in with Discord"; }
+$("signin").addEventListener("click", async () => {
+  const b = $("signin");
+  b.setAttribute("aria-busy", "true"); b.textContent = "Opening Discord…";
+  try {
+    await backend.signIn();
+    if (await backend.session()) { resetSignIn(); await boot(); }
+  } catch (e) {
+    resetSignIn();
+    showSignIn("Couldn't open Discord. Check your connection and try again.");
+  }
+});
+window.addEventListener("pageshow", (e) => { if (e.persisted) resetSignIn(); });   // Back from Discord's page
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && S.booted) load(); });
+
+boot();
+</script>
+</body>
+</html>
